@@ -8,23 +8,19 @@
 
 <div fxFlex="100" fxLayout="row wrap">
    <div 
+      *ngIf="project$ | async; let projects; else loading"
       fxFlex="90" 
       fxLayoutAlign="start start"
       fxLayout="column">
          <header-anna></header-anna>
-         <div
-            *ngIf="project$ | async; let projects; else loading"
-            fxLayout="row wrap" 
-            fxLayoutAlign="start start"
-            fxLayout.xs="column" 
+         <div 
+            *ngFor="let project of projects" class="cartouche"
             fxLayoutGap="20px"
-            [ngStyle]="{'padding':'20px'}">
-               <div *ngFor="let project of projects" class="cartouche"
-                  fxLayout="column"
-                  fxFlexFill
-                  fxLayoutAlign="center start"
-                  fxFlex="30"
-                  [ngStyle]="{'padding-bottom':'15px'}">
+            [ngStyle]="{'padding':'20px'}"
+            fxLayoutAlign="center start"
+            fxLayout="row wrap"
+            fxFlex="30"
+            [ngStyle]="{'padding-bottom':'15px'}">
                      <div [routerLink]="['./../project', project.$key]" class="project-img">
                         <img *ngIf="project.thumb"  class="thumb" src="{{ project.thumb }}">
                         <img *ngIf="!project.thumb" class="thumb" src="https://firebasestorage.googleapis.com/v0/b/anna-lemoine-prod.appspot.com/o/theme%2Fempty-project-black.png?alt=media&token=85ccf469-2d8f-4895-acd3-ac61e045c256" alt="">
@@ -47,7 +43,6 @@
                            </button>
                      </div>
                      <!-- <i class="material-icons" (click)='deleteProject(project?.$key)'>clear</i>     -->                     
-               </div>
          </div>     
    </div>
    <div fxFlex="10">
