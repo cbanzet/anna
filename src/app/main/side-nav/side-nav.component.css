@@ -1,0 +1,35 @@
+
+
+h4 {
+	font-size: 0.8em;
+	font-family: "Times New Roman", serif;	
+	margin: 20px 0 0;
+	font-weight: lighter;
+}
+
+span {
+  font-family: "Times New Roman", serif;	
+  font-size: 0.9em;
+}
+
+.other-links, .contact, .login, .logout {
+	text-decoration: underline;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 2px 0;	
+}
+.other-links:hover, .contact:hover, .login:hover, .logout:hover {
+	background-color: #000;
+	color: #FFF;
+	padding: 2px 5px;
+}	
+.contact {
+  font-family: "Arial", sans-serif;	
+  font-weight: lighter !important;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+.login {
+  margin-top: 30px;
+  font-weight: bold;	
+}

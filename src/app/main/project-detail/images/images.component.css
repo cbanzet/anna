@@ -1,0 +1,13 @@
+#images img {
+	max-width: 200px;
+	height: auto
+}
+
+.images-cartouche {
+	background-color: #eee;
+	transition: all 500ms ease; 
+}
+
+.images-cartouche:hover {
+	background-color: #ccc;
+}

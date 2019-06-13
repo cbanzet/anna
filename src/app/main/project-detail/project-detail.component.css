@@ -1,0 +1,39 @@
+h3 {
+  font-family: "Times New Roman", serif;	
+  font-size: 1.6em;	
+  font-weight: lighter;
+  padding: 30px 0 10px;
+  margin: 0px 0 10px;
+  border-bottom: 1px dotted #eee;
+}
+
+.firsth3 {
+	padding: 0 0 20px 0 !important;
+}
+
+.list-button {
+	font-size: 2em;
+	margin-left: 15px;
+}
+
+.thumb {
+	max-width: 100%; height: auto;
+}
+
+.close-button {
+	font-size: 4em;
+	cursor: pointer;
+  transition: all 0.1s;		
+}
+.close-button:hover {
+	background-color: #000;
+	color: #FFF;
+}
+
+.image-grid {
+	max-width: 100%;
+	height: auto;
+}
+.white-but {
+	color: #FFF;
+}

@@ -1,0 +1,10 @@
+
+
+
+<div [ngStyle]="{'padding':'0','background-color':'#000'}" class="admin-nav">
+	<button mat-button (click)="shownewproject=true;showprojects=false">NEW PROJECT</button>
+	<button mat-button (click)="showprojects=true;shownewproject=false">PROJECTS LIST</button>
+</div>
+
+<projects-grid *ngIf="showprojects"></projects-grid>
+<project-form *ngIf="shownewproject"></project-form>

@@ -1,0 +1,33 @@
+
+<div 
+	fxLayout="row wrap"
+	fxLayoutAlign="start start"
+	[ngStyle]="{'padding':'10px'}">
+
+		<mat-form-field fxFlex="40">
+			<input [(ngModel)]="title" required matInput placeholder="Add Project Title" name="title">
+		</mat-form-field>
+
+		<mat-form-field fxFlex="40">
+			<input [(ngModel)]="subtitle" required matInput placeholder="Add Project Subtitle" name="subtitle">
+		</mat-form-field>
+
+		<mat-form-field fxFlex="20">
+		  <input [(ngModel)]="date" readonly required matInput [matDatepicker]="picker" placeholder="Choose a date">
+		  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		  <mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+
+		<mat-form-field fxFlex="100">
+    	<textarea matInput [(ngModel)]="content" placeholder="Project Details"></textarea>
+  	</mat-form-field>
+
+  	<div fxFlex="100">
+  		<button mat-fab type="submit" color="warn"
+  			(click)="clickHandler()"
+				[disabled]="!title || !subtitle || !date">
+					<mat-icon>save</mat-icon>
+			</button>
+  	</div>
+
+</div>

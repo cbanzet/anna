@@ -1,0 +1,54 @@
+<ng-template #loading>        
+  <br><br><br><br>
+  <mat-spinner color="warn"></mat-spinner>
+  <br><br>
+</ng-template>
+
+<div id="images" *ngIf="images; else loading" fxLayout="row wrap" fxLayoutAlign="start center">  
+
+	<br><br>
+
+	<button mat-raised-button color="black" (click)="reAttributeImagesPosition(images)">
+		<mat-icon>autorenew</mat-icon>&nbsp; Reset Images Position
+	</button>
+
+	<div *ngFor="let image of images; let i=index"
+		fxFlex="90"
+		fxLayout="row"
+		[ngStyle]="{'padding':'10px','margin':'10px 0 0'}"
+		class="images-cartouche">
+			<div>
+				<img src="{{ image.url }}">
+			</div>
+			<div fxLayout="column" fxLayoutAlign="start start">
+				<div fxLayoutAlign="start center" [ngStyle]="{'padding-left':'10px'}">
+					<button *ngIf="image.position" mat-fab disabled color="black">
+						{{ i+1 }}
+					</button>
+					&nbsp;
+					<button mat-fab *ngIf="i!=0" (click)="changeImagePostion(images[i-1],image)" color="black">
+						<mat-icon>keyboard_arrow_up</mat-icon>
+					</button>
+					&nbsp;						
+					<button mat-fab *ngIf="i!=(images.length-1)" (click)="changeImagePostion(images[i+1],image)" color="black">
+						<mat-icon>keyboard_arrow_down</mat-icon>
+					</button>
+					&nbsp;						
+					<button mat-fab (click)="removeArtistImage(image)" color="warn">
+						<mat-icon>clear</mat-icon>
+					</button>	
+					<button mat-icon-button type="button" 
+							(click)="selectImageForThumb(image.url)" 
+							class="white-but">
+						  <mat-icon>check</mat-icon>
+					  </button>				
+				</div>
+				<div [ngStyle]="{'padding':'10px'}" class="credit">
+					Credit :
+					<strong>{{ image.credit }}</strong><br>
+					<span [ngStyle]="{'font-size':'0.8em','color':'#999999'}">uploaded on {{ image.timestamp | date }}</span><br>
+				</div>
+			</div>
+	</div>
+
+</div>

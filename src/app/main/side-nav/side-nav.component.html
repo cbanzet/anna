@@ -1,0 +1,43 @@
+<div fxLayout="column">
+
+	<span class="contact"
+		routerLink="./../contact">
+			contact
+	</span>
+
+	<span class="other-links"
+		[routerLink]="['']">
+			all the projects
+	</span>
+
+	<h4>category</h4>
+	<div *ngIf="categories | async ; let category">
+		<span class="other-links" 
+			*ngFor="let categorie of category[0].categories"
+			(click)="sendData(categorie)">
+				{{categorie}}<br>
+		</span>
+	</div>
+
+	<h4>clients</h4>
+	<span class="other-links">list clients</span>
+
+
+	<span class="login" *ngIf="auth.user | async;let user"
+		routerLink="./../dashboard">
+			{{ user.displayName }}
+	</span>
+
+
+  <span class="logout" *ngIf="auth.user | async as user; else login" mat-menu-item 
+  	(click)="logout()">
+			Log out
+  </span>
+  <ng-template #login>
+    <span class="login" routerLink='/login'>
+      login
+    </span>  
+  </ng-template>
+
+
+</div>

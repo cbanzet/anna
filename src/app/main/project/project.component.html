@@ -1,0 +1,59 @@
+<!-- <pre>{{ project | async | json }}</pre> -->
+
+<ng-template #loading class="loading">           
+   <br><br>
+   <mat-spinner color="warn" class="loading-mat-spinner"></mat-spinner>
+   <br><br>
+</ng-template>
+
+<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start">
+	<div 
+	  fxFlex="90" 
+	  fxLayoutAlign="start start"
+	  fxLayout="column">
+		
+			<div
+				fxFlex="100"
+				fxLayout="row wrap"
+			  fxLayoutAlign="start end"
+			  [ngStyle]="{'padding':'20px'}">
+			     <h1>anna lemoine</h1> 
+			     <p fxFlexAlign="end" [ngStyle]="{'margin-left':'50px'}" class="accroche-anna">
+			       <span>art direction</span> & <span>graphic design</span>
+			     </p>  
+			</div>
+
+
+			<div fxFlex="100">
+				<div *ngIf="project | async; let project; else loading" 
+					fxLayout="column" 
+					fxLayoutAlign="start start"
+					[ngStyle]="{'padding':'20px'}">
+						
+						<span *ngFor="let img of project.images; let i=index">
+							<img *ngIf="i==imgNb" src="{{ img }}" class="thumb">
+						</span>
+
+						<div fxLayout="row wrap" fxFlexFill>
+							<div fxFlex="100" class="control-diapo" [ngStyle]="{'padding-bottom':'20px'}">
+								<span *ngIf="imgNb!=0" (click)="imgNb=imgNb-1" class="underline">previous</span>
+								<span *ngIf="imgNb+1!=project.images.length" (click)="imgNb=imgNb+1" class="underline">next</span>
+								<span>{{ imgNb+1 }} / {{ project.images.length }}</span>
+							</div>
+							<div fxFlex="100" fxLayout="column" >
+								<h2>{{ project.title }}</h2>
+								<h3>{{ project.subtitle }}</h3>
+								<p fxLayout="column">
+									<span *ngIf="project.editor">Editor: {{ project.editor }}</span>
+									<span *ngIf="project.photographer">Photographer: {{ project.photographer }}</span>
+								</p>				
+							</div>
+						</div>
+				</div>
+			</div>
+	</div>
+
+	<div fxFlex="10">
+		<side-nav></side-nav>	
+	</div>
+</div>
