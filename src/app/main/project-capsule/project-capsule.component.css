@@ -1,0 +1,26 @@
+.thumb {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	margin: 2px;
+	border: 1px solid #000;
+  transition: all 0.1s;		
+  cursor: pointer;
+}
+.thumb:hover {
+	margin: 0;
+	border: 3px solid #000;
+}
+
+h3 {
+  font-family: "Times New Roman", serif;	
+  font-size: 1em;
+  font-weight: bold;
+  margin:0;
+}
+
+h4 {
+  font-family: "Times New Roman", serif;	
+  font-size: 0.8em;
+  margin:0;  
+}

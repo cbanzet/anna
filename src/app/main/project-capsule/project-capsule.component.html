@@ -1,0 +1,30 @@
+<!-- {{ project | async | json }} -->
+
+<ng-template #loading>        
+  <br><br><br><br>
+  <mat-spinner color="warn"></mat-spinner>
+  <br><br>
+</ng-template>
+
+
+<div *ngIf="project | async as project; else loading" fxLayout="column">
+    <div>
+	    <img *ngIf="project.thumb"  class="thumb" src="{{ project.thumb }}">
+	    <img *ngIf="!project.thumb" class="thumb" src="https://firebasestorage.googleapis.com/v0/b/anna-lemoine-prod.appspot.com/o/theme%2Fempty-project-black.png?alt=media&token=85ccf469-2d8f-4895-acd3-ac61e045c256" alt="">	
+	  </div>
+	  <div fxLayout="row wrap">
+	  	<div 
+	  		fxFlex="80"
+	  		fxLayout="column"
+	  		fxLayoutAlign="start start">
+					<h3>{{ project.title }}</h3>
+					<h4>{{ project.subtitle }}</h4>
+			</div>
+			<div 
+				*ngIf="auth.user | async as user; else login"
+				fxFlex="20" 
+				fxLayoutAlign="end start">
+					<fa [routerLink]="['./../edit', project.$key]" size="2x" name="cog" animation="pulse"></fa>			
+			</div>
+		</div>
+</div>
