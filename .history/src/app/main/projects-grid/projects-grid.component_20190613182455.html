@@ -1,0 +1,52 @@
+<!-- <pre>{{ projects | async | json }}</pre> -->
+
+<ng-template #loading class="loading">           
+   <br><br>
+   <mat-spinner color="warn" class="loading-mat-spinner"></mat-spinner>
+   <br><br>
+</ng-template>
+
+<div fxFlex="100" fxLayout="row wrap">
+   <div 
+      *ngIf="project$ | async; let projects; else loading"
+      fxFlex="90" 
+      fxLayoutAlign="start start"
+      fxLayout="column">
+         <h1>Test github with new branch and Fabrice Push after me</h1>
+         <header-anna></header-anna>
+         <div 
+            *ngFor="let project of projects" class="cartouche"
+            fxLayoutGap="20px"
+            [ngStyle]="{'padding':'20px'}"
+            fxLayoutAlign="center start"
+            fxLayout="row wrap"
+            fxFlex="30"
+            [ngStyle]="{'padding-bottom':'15px'}">
+                     <div [routerLink]="['./../project', project.$key]" class="project-img">
+                        <img *ngIf="project.thumb"  class="thumb" src="{{ project.thumb }}">
+                        <img *ngIf="!project.thumb" class="thumb" src="https://firebasestorage.googleapis.com/v0/b/anna-lemoine-prod.appspot.com/o/theme%2Fempty-project-black.png?alt=media&token=85ccf469-2d8f-4895-acd3-ac61e045c256" alt="">
+                     </div>
+                     <div [routerLink]="['./../project', project.$key]" class="project-title"
+                        fxFlexFill 
+                        fxLayoutAlign="center center">
+                           {{ project.title }}
+                     </div>
+                     <div [routerLink]="['./../project', project.$key]" class="project-subtitle"
+                        fxFlexFill 
+                        fxLayoutAlign="center center">
+                           {{ project.subtitle }}
+                     </div>
+                     <div *ngIf="auth.user | async as user; else login"
+                        fxFlexFill
+                        fxLayoutAlign="center center">
+                           <button mat-icon-button [routerLink]="['./../edit', project.$key]">
+                              <i class="material-icons">edit</i> 
+                           </button>
+                     </div>
+                     <!-- <i class="material-icons" (click)='deleteProject(project?.$key)'>clear</i>     -->                     
+         </div>     
+   </div>
+   <div fxFlex="10">
+      <grid-sid-nav></grid-sid-nav>
+   </div>
+</div>

@@ -1,0 +1,222 @@
+<!-- <pre>{{ project | async | json }}</pre> -->
+
+<ng-template #loading class="loading">           
+   <br><br>
+   <mat-spinner color="warn" class="loading-mat-spinner"></mat-spinner>
+   <br><br>
+</ng-template>
+
+
+<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start">
+
+	<header-anna fxFlex="100"></header-anna>
+
+<!-- 	<div fxFlex="7" fxLayoutAlign="center start">
+		<i class="material-icons close-button" [routerLink]="['../../dashboard']">keyboard_backspace</i>
+	</div> -->
+
+
+	<div fxFlex="90" fxLayout="row wrap" fxLayoutAlign="start start"
+		*ngIf="project | async; let project; else loading" [ngStyle]="{'padding':'10px'}">
+
+		<h3 fxFlex="100" class="firsth3">Images</h3>
+
+		<div fxFlex="100" fxLayoutAlign="end start">
+			<button mat-button type="button" color="black"
+				*ngIf="!showUploadImages"
+			  (click)="showUploadImages=true">
+			  <mat-icon>add</mat-icon> Add images
+		  </button>			
+			<button mat-button type="button" color="black"
+				*ngIf="showUploadImages"
+			  (click)="showUploadImages=false">
+			  <mat-icon>clear</mat-icon> See images
+		  </button>					  	
+		</div>
+
+		<div *ngIf="!showUploadImages" fxLayoutAlign="start start" fxLayoutGap="10px">
+			<div fxFlex="30">
+				<img *ngIf="project.thumb" src="{{ project.thumb }}" class="thumb">
+				<img *ngIf="!project.thumb" src="https://firebasestorage.googleapis.com/v0/b/anna-lemoine-prod.appspot.com/o/theme%2Fempty-project-black.png?alt=media&token=85ccf469-2d8f-4895-acd3-ac61e045c256" class="thumb">			
+			</div>
+			<div fxFlex="70" fxLayout="row wrap" fxLayoutAlign="end start" fxLayoutGap="0px">
+				<!-- <div
+					[ngStyle]="{'background' : 'url(' + image.url + ') no-repeat center center', 'height':'100px' }"
+					*ngFor="let image of images" 
+					fxFlex="20" 					
+					fxLayoutAlign="center center">
+						<button mat-icon-button type="button" 
+							(click)="selectImageForThumb(image.url)" 
+							class="white-but">
+						  <mat-icon>check</mat-icon>
+					  </button>
+						<button mat-icon-button type="button" 
+							(click)="deleteImage(projectid,image.id)" 
+							class="white-but">
+						  <mat-icon>clear</mat-icon>
+					  </button>
+				</div> -->
+			</div>
+		</div>
+
+		<div class="show-pic-carou" *ngIf="artistImages | async as images">
+			<images [projectid]="projectid"  *ngIf="!showUploadImages"></images>
+		</div>
+
+		<project-images fxFlex="100" 
+			*ngIf="showUploadImages" 
+			(imageUploaded)="launchFunctionWithTimeOut($event)"
+			[projectkey]="projectid"
+			[projectImagesArray]="project.images">
+		</project-images>
+
+
+		<h3 fxFlex="100">Date</h3>
+		
+		<mat-form-field fxFlex="32">
+		  <input matInput
+		  	[matDatepicker]="datepicker" placeholder="Choose date"
+		  	[(ngModel)]="project.date"
+		  	(ngModelChange)="updateProject('date',project.date)">
+		  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+		  <mat-datepicker #datepicker></mat-datepicker>
+		</mat-form-field>
+<!-- 		<div *ngIf="hideDateForm&&project.date" fxFlex="50">
+
+			{{  project.date | date}}
+
+			{{ project.date.toDate() | date }}
+			<i class="material-icons" (click)="hideDateForm=false">edit</i>
+		</div> -->
+
+		<h3 fxFlex="100">Title & Subtitle</h3>
+
+		<mat-form-field fxFlex="50">
+			<input matInput placeholder="Project Title" required
+				[(ngModel)]="project.title"
+				(ngModelChange)="updateProject('title',project.title)">
+		</mat-form-field>
+
+		<mat-form-field fxFlex="50">
+			<input matInput placeholder="Project Subtitle" required
+				[(ngModel)]="project.subtitle"
+				(ngModelChange)="updateProject('subtitle',project.subtitle)">
+		</mat-form-field>
+
+		<h3 fxFlex="100">Project Details</h3>
+
+		<mat-form-field fxFlex="100">
+			<textarea matInput class="full-width"
+								rows="10" 
+								placeholder="Project Details"
+								[(ngModel)]="project.content"
+								(ngModelChange)="updateProject('content',project.content)">
+			</textarea>
+		</mat-form-field>	
+
+		<mat-form-field fxFlex="100">
+			<input matInput placeholder="Lien Video" required
+				[(ngModel)]="project.videolink"
+				(ngModelChange)="updateProject('videolink',project.videolink)">
+		</mat-form-field>
+
+		<mat-form-field fxFlex="100">
+			<input matInput placeholder="Lien Externe" required
+				[(ngModel)]="project.link"
+				(ngModelChange)="updateProject('link',project.link)">
+		</mat-form-field>		
+
+		<h3 fxFlex="100">Client</h3>
+
+		<div *ngIf="filteredClients | async; let clients; else loading">
+			<div
+				fxLayout="row wrap"
+				fxLayout.xs="column"
+				fxFlexFill>
+				  <div *ngIf="searchClientForm&&!project.client"
+					fxFlex="100"
+					fxLayoutAlign="center start">
+					<mat-form-field fxFlex="100">
+						<input matInput 
+							placeholder="Chercher un client" aria-label="Client"
+							[matAutocomplete]="auto" 
+							[formControl]="clientCtrl">  
+						<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+							<mat-option *ngFor="let client of clients" [value]="client">
+							<span><strong>{{ client.lastname }}</strong></span>
+							</mat-option>
+						</mat-autocomplete>
+						
+						<mat-icon matSuffix>search</mat-icon>
+		
+						<mat-icon matSuffix class="icon-button" 
+							(click)="formAddClient=true;searchClientForm=false">add</mat-icon>
+					</mat-form-field> 
+				</div>
+
+				<div *ngIf="project.client" >
+						<mat-chip-list #chipList>
+								<mat-chip
+										 [removable]="removable" (removed)="deleteClientInProject()">
+										 {{ project.clientname }}  {{ project.client.firstname }}
+								  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+								</mat-chip>
+						</mat-chip-list>
+				</div>
+
+				<form *ngIf="formAddClient" #newClientForm="ngForm" (ngSubmit)="onSubmit(newClientForm)">		
+					<div
+							fxLayout="row wrap"
+							fxLayout.xs="column" 
+							fxFlexFill
+							fxLayoutAlign="start start"
+							[ngStyle]="{'padding-top': '10px'}">
+								<div fxFlex="60">
+								  <mat-form-field>
+									  <input matInput placeholder="Nouveau Client" required
+										  ngModel #newClient="ngModel"
+										  name="newClient">
+								  </mat-form-field>
+								</div>						  
+							  <div fxFlex="40">				
+								  <button mat-icon-button type="button" color="black"
+									  (click)="formAddClient=false;searchClientForm=true">
+									  <mat-icon>close</mat-icon>
+								  </button>			    						 	
+								  <button mat-icon-button type="submit" color="warn"
+									  [disabled]="!newClientForm.form.valid">
+									  <mat-icon>save</mat-icon>
+								  </button>
+							  </div>
+					</div>
+				</form>	 
+			</div>
+		</div>
+
+		<h3 fxFlex="100">Categories</h3>
+
+		<!-- <categories [projectid]="projectid" fxFlex="100"></categories> -->
+		<mat-form-field fxFlex="100" *ngIf="categories | async as arraycategories" >
+			<mat-chip-list #chipList>
+			  <mat-chip *ngFor="let category of project.categories" [selectable]="selectable"
+					   [removable]="removable" (removed)="remove(project.categories,category,arraycategories)">
+				{{ category }}
+				<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+			  </mat-chip>
+			  <input placeholder="New Category..."
+					 [matChipInputFor]="chipList"
+					 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+					 [matChipInputAddOnBlur]="addOnBlur"
+					 (matChipInputTokenEnd)="add($event,project.categories,arraycategories)">
+			</mat-chip-list>
+		  </mat-form-field>
+
+	</div>
+
+
+  <div fxFlex="10">
+      <side-nav></side-nav>
+  </div>
+
+</div>
+
