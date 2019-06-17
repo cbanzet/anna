@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from './../ui/material/angularmaterial.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // import { FormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
@@ -15,7 +16,6 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { GridSidNavComponent } from './grid-sid-nav/grid-sid-nav.component';
 
 import { ContactComponent } from './contact/contact.component';
-
 import { MainService } from './main.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from '../core/auth.service';
@@ -25,6 +25,7 @@ import { FileSizePipe } from './project-images/file-size.pipe';
 import { DropZoneDirective } from './project-images/drop-zone.directive';
 import { HeaderAnnaComponent } from './header-anna/header-anna.component';
 import { ImagesComponent } from './project-detail/images/images.component';
+import { ProjectCapsuleComponent } from './project-capsule/project-capsule.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +40,14 @@ import { ImagesComponent } from './project-detail/images/images.component';
     ProjectsGridComponent,
     ProjectFormComponent,
     ImagesComponent, 
-    ProjectImagesComponent, FileSizePipe, DropZoneDirective, HeaderAnnaComponent,
+    ProjectImagesComponent, FileSizePipe, DropZoneDirective, HeaderAnnaComponent, ProjectCapsuleComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     BrowserAnimationsModule,  
     FlexLayoutModule,
+    AngularFontAwesomeModule,
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule  

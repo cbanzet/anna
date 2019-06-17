@@ -218,6 +218,8 @@ export class MainService {
     imageData['position']    = Date.now();
     imageData['timestamp']   = Date.now();
     imageData['url']         = value;
+    imageData['projectkey']  = id ? id : null;
+
     var batch                = this.afs.firestore.batch();
     const projectRef         = this.projectsCollection.doc(id)
                                                       .collection('images')

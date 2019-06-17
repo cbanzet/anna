@@ -1,0 +1,23 @@
+.thumb, .imgproject {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+  transition: all 0.1s;		
+  cursor: pointer;
+}
+.thumb:hover {
+	margin: 0;
+}
+
+h3 {
+  font-family: "Times New Roman", serif;	
+  font-size: 1em;
+  font-weight: bold;
+  margin:0;
+}
+
+h4 {
+  font-family: "Times New Roman", serif;	
+  font-size: 0.8em;
+  margin:0;  
+}

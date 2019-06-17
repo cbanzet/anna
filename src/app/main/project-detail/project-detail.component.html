@@ -21,7 +21,7 @@
 
 		<h3 fxFlex="100" class="firsth3">Images</h3>
 
-		<div fxFlex="100" fxLayoutAlign="end start">
+		<div fxFlex="100" fxLayoutAlign="start start">
 			<button mat-button type="button" color="black"
 				*ngIf="!showUploadImages"
 			  (click)="showUploadImages=true">
@@ -39,27 +39,9 @@
 				<img *ngIf="project.thumb" src="{{ project.thumb }}" class="thumb">
 				<img *ngIf="!project.thumb" src="https://firebasestorage.googleapis.com/v0/b/anna-lemoine-prod.appspot.com/o/theme%2Fempty-project-black.png?alt=media&token=85ccf469-2d8f-4895-acd3-ac61e045c256" class="thumb">			
 			</div>
-			<div fxFlex="70" fxLayout="row wrap" fxLayoutAlign="end start" fxLayoutGap="0px">
-				<!-- <div
-					[ngStyle]="{'background' : 'url(' + image.url + ') no-repeat center center', 'height':'100px' }"
-					*ngFor="let image of images" 
-					fxFlex="20" 					
-					fxLayoutAlign="center center">
-						<button mat-icon-button type="button" 
-							(click)="selectImageForThumb(image.url)" 
-							class="white-but">
-						  <mat-icon>check</mat-icon>
-					  </button>
-						<button mat-icon-button type="button" 
-							(click)="deleteImage(projectid,image.id)" 
-							class="white-but">
-						  <mat-icon>clear</mat-icon>
-					  </button>
-				</div> -->
-			</div>
 		</div>
 
-		<div class="show-pic-carou" *ngIf="artistImages | async as images">
+		<div fxFlex="100" class="show-pic-carou" *ngIf="artistImages | async as images">
 			<images [projectid]="projectid"  *ngIf="!showUploadImages"></images>
 		</div>
 
