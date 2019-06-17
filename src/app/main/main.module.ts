@@ -16,7 +16,6 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { GridSidNavComponent } from './grid-sid-nav/grid-sid-nav.component';
 
 import { ContactComponent } from './contact/contact.component';
-
 import { MainService } from './main.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from '../core/auth.service';

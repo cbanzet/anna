@@ -6,11 +6,10 @@
 
 <div id="images" *ngIf="images; else loading" fxLayout="row wrap" fxLayoutAlign="start center">  
 
-	<br><br>
 
-	<button mat-raised-button color="black" (click)="reAttributeImagesPosition(images)">
+<!-- 	<button mat-raised-button color="black" (click)="reAttributeImagesPosition(images)">
 		<mat-icon>autorenew</mat-icon>&nbsp; Reset Images Position
-	</button>
+	</button> -->
 
 	<div *ngFor="let image of images; let i=index"
 		fxFlex="90"
@@ -36,8 +35,9 @@
 					&nbsp;						
 					<button mat-fab (click)="removeArtistImage(image)" color="warn">
 						<mat-icon>clear</mat-icon>
-					</button>	
-					<button mat-icon-button type="button" 
+					</button>
+					&nbsp;	
+					<button mat-fab type="button" color="warn"
 							(click)="selectImageForThumb(image.url)" 
 							class="white-but">
 						  <mat-icon>check</mat-icon>

@@ -6,26 +6,32 @@
    <br><br>
 </ng-template>
 
-<div fxFlex="100" fxLayout="row wrap">
+<div fxFlex="100" fxLayout="row wrap" [ngStyle.xs]="{'padding':'0'}">
    <div 
+      [ngStyle.xs]="{'padding':'0','margin':'0'}"
       *ngIf="project$ | async; let projects; else loading"
       fxFlex="90" 
+      fxFlex.xs="100" 
       fxLayoutAlign="start start"
       fxLayout="row wrap">
-         <div fxFlex="100">
-            <header-anna></header-anna>            
+         <div 
+            fxLayoutAlign.xs="center center"
+            fxFlex="100">
+               <header-anna></header-anna>            
          </div>
          <div 
             *ngFor="let project of projects"
             fxLayoutGap="5px"
             fxLayoutAlign="start start"
             fxLayout="column"
-            fxFlex="30"
-            [ngStyle]="{'padding':'10px'}">
+            fxFlex="45"
+            fxFlex.xs="100"
+            [ngStyle]="{'padding':'10px'}"
+            [ngStyle.xs]="{'padding':'0','margin':'0'}">
                <project-capsule [projectkey]="project.$key"></project-capsule>
          </div>     
    </div>
-   <div fxFlex="10">
+   <div fxFlex="10" fxHide.xs>
       <grid-sid-nav></grid-sid-nav>
    </div>
 </div>
