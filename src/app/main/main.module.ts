@@ -11,7 +11,6 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectsGridComponent } from './projects-grid/projects-grid.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { GridSidNavComponent } from './grid-sid-nav/grid-sid-nav.component';
 
@@ -31,7 +30,6 @@ import { ProjectCapsuleComponent } from './project-capsule/project-capsule.compo
   declarations: [
     ProjectDetailComponent, 
     LoginComponent, 
-    DashboardComponent, 
     ProjectComponent,
     ProjectsGridComponent,
     SideNavComponent,
