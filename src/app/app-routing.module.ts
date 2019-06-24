@@ -10,11 +10,10 @@ import { ProjectDetailComponent } from './main/project-detail/project-detail.com
 import { ProjectsGridComponent } from './main/projects-grid/projects-grid.component';
 import { ContactComponent } from './main/contact/contact.component';
 import { ProjectComponent } from './main/project/project.component';
+import { ProjectFormComponent } from './main/project-form/project-form.component';
 
 import { LoginComponent } from './main/login/login.component';
 import { AuthGuard } from './core/auth.guard';
-import { DashboardComponent } from './main/dashboard/dashboard.component';
-
 
 const routes: Routes = [
   // { path: 'login', component: UserLoginComponent },
@@ -24,7 +23,6 @@ const routes: Routes = [
   ////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////
-  { path: 'dashboard',    component: DashboardComponent, canActivate: [AuthGuard]},  
   { path: 'edit/:id',     component: ProjectDetailComponent, canActivate: [AuthGuard]},  
   { path: 'login',        component: LoginComponent },  
   ////////////////////////////////////////////////////////
@@ -32,6 +30,7 @@ const routes: Routes = [
   ////////////////////////////////////////////////////////
   { path: 'contact',      component: ContactComponent},
   { path: 'project/:id',  component: ProjectComponent },
+  { path: 'newproject',   component: ProjectFormComponent },
   { path: '',             component: ProjectsGridComponent },
   // { path: '**',           component: PageNotFoundComponent },
   { path: ':cat',         component: ProjectsGridComponent }

@@ -24,8 +24,12 @@
 
 
 	<span class="login" *ngIf="auth.user | async;let user"
-		routerLink="./../dashboard">
+		routerLink="./../">
 			{{ user.displayName }}
+	</span>
+
+	<span routerLink="./../newproject">
+		New Project
 	</span>
 
 

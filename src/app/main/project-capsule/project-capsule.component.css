@@ -1,6 +1,6 @@
 .thumb, .imgproject {
 	max-width: 100%;
-	width: 100%;
+	width: 500px;
 	height: auto;
   transition: all 0.1s;		
   cursor: pointer;
